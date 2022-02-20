@@ -1,3 +1,4 @@
+using LibraryExampleBE.Business.Mappings;
 using LibraryExampleBE.Business.Services;
 using LibraryExampleBE.Business.Services.Interfaces;
 using LibraryExampleBE.Infrastructure.Context;
@@ -20,8 +21,19 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {   
+            builder.AllowAnyHeader();
+            builder.AllowAnyMethod();
+            builder.WithOrigins("http://localhost:4200");
+        });
+});
+
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(typeof(ClassMappings));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -37,7 +49,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
