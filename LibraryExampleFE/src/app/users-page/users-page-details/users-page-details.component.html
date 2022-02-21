@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Create</h1>
+<h1 mat-dialog-title>{{userId.value === 0 ? 'Create' : 'Edit'}}</h1>
 <div mat-dialog-content>
     <form [formGroup]="form" class="form-content">
         <mat-form-field appearance="fill">
@@ -17,11 +17,33 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
-      
+       
+
+        <button mat-raised-button (click)="addContact()" class="add-button">
+           Add contact
+        </button>
+
+        <ng-container formArrayName="contacts">
+            <ng-container *ngFor="let contactForm of contacts.controls; let i = index">
+                <div class="contact-row" [formGroupName]="i">
+                    <mat-form-field appearance="fill" class="row-item">
+                        <input matInput
+                               formControlName="firstName"
+                               placeholder="First name">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="row-item">
+                        <input matInput
+                               formControlName="lastName"
+                               placeholder="Last name">
+                    </mat-form-field>
+                    <button  mat-raised-button class="delete-btn" (click)="deleteContact(i)">Delete</button>
+                </div>
+            </ng-container>
+        </ng-container>
     </form>
     
 </div>
 <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Close</button>
-    <button mat-button type="submit" [disabled]="!form.valid" (click)="onSubmit()">Save</button>
+    <button mat-button type="submit" [disabled]="!form.valid || contacts.length == 0" (click)="onSubmit()">Save</button>
 </div>

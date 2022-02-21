@@ -10,7 +10,15 @@ namespace LibraryExampleBE.Business.Mappings
         {
             CreateMap<User, UserDTO>();
 
-            CreateMap<UserDetailsDTO, User>();
+            CreateMap<UserDTO, UserDetailsDTO>();
+
+            CreateMap<User, UserDetailsDTO>()
+                .ForMember(dest => dest.Dob, opt => opt.MapFrom(src => src.DoB.ToLocalTime()));
+            CreateMap<UserDetailsDTO, User>()
+                .ForMember(dest => dest.DoB, opt => opt.MapFrom(src => src.Dob.ToLocalTime()));
+            CreateMap<ContactDTO, Contact>();
+
+            CreateMap<Contact, ContactDTO>(); 
 
         }
     }

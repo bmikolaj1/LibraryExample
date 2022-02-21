@@ -8,6 +8,7 @@ namespace LibraryExampleBE.Business.Models.DTO
 {
     public class UserDetailsDTO : UserDTO
     {
-        public DateTime DoB { get; set; }
+        public DateTime Dob { get; set; }
+        public IEnumerable<ContactDTO> Contacts { get; set; }
     }
 }

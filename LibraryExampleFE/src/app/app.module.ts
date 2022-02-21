@@ -15,10 +15,15 @@ import {MatTableModule} from '@angular/material/table';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+
+import { NzTableModule } from 'ng-zorro-antd/table';
+
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,8 +45,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatNativeDateModule 
+    MatIconModule,
+    MatNativeDateModule,
+    NzTableModule,
+    FormsModule      
   ],
+  exports: [MatIconModule, MatButtonModule],
   providers: [{ provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} },
     MatDatepickerModule],

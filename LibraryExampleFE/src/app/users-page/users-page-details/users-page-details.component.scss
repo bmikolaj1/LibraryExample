@@ -1,4 +1,13 @@
 .form-content{
-    display: flex;
-    flex-flow: column wrap;
+     display: flex;
+     flex-flow: column wrap;
+}
+
+.add-button{
+    width: 20%;
+    margin-bottom: 10px;
+}
+
+.row-item{
+    margin-right: 10px;
 }
