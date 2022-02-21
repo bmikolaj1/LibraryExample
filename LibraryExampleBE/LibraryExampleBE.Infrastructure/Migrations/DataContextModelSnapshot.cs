@@ -30,7 +30,7 @@ namespace LibraryExampleBE.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
