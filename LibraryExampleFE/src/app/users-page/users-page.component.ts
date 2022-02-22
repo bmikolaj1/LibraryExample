@@ -55,8 +55,7 @@ export class UsersPageComponent implements OnInit {
 
     const request = user.id !== 0 ? this._userService.editUser(user) : this._userService.adduser(user);
 
-    request.pipe(take(1)).subscribe((result) =>{
-      //display notification message based on result 
+    request.pipe(take(1)).subscribe((result) => {
       this.refreshGrid();
     })
       

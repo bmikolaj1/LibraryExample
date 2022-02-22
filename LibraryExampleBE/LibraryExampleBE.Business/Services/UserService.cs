@@ -49,6 +49,7 @@ namespace LibraryExampleBE.Business.Services
                 return false;
             }
 
+            //need to manualy remove linked entities which were removed on front end
             List<Contact>? userContacs = _context.Contact.Where(i => i.UserId == user.Id).ToList();
             if (userContacs.Any())
             {
